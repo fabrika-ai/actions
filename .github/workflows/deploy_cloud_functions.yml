@@ -54,7 +54,9 @@ jobs:
                 --runtime python39 \
                 --trigger-http \
                 --allow-unauthenticated \
-                --source=$deploy_dir
+                --source=$deploy_dir \
+                --gen2 \
+                --memory 128MB
 
               # Clean up temporary directory
               rm -rf $deploy_dir
