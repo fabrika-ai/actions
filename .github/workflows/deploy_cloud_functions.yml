@@ -19,7 +19,7 @@ jobs:
           python-version: '3.8'
 
       - name: Authenticate with Google Cloud
-        uses: google-github-actions/setup-gcloud
+        uses: google-github-actions/setup-gcloud@main
         with:
           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
 
