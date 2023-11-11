@@ -20,9 +20,15 @@ jobs:
           python-version: '3.8'
 
       - name: Authenticate with Google Cloud
-        uses: google-github-actions/setup-gcloud@v1
+        uses: google-github-actions/auth@v1
         with:
           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
 
       - name: Deploy Functions
         run: |
