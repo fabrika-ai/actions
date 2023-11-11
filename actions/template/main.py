@@ -10,6 +10,11 @@ import asyncio
 import nest_asyncio
 
 
+@app.get("/hello_world")
+async def get_user_name():
+    return {"Hello": "World"}
+
+
 def as_cloud_function(fastapi_app, cloud_function_request):
     body = cloud_function_request.get_data(parse_form_data=False)
     scope = {
@@ -50,11 +55,6 @@ def as_cloud_function(fastapi_app, cloud_function_request):
     loop.run_until_complete(fastapi_app(scope, receive, send))
 
     return (b''.join(response_body), response_status, dict(response_headers))
-
-
-@app.get("/hello_world")
-async def get_user_name():
-    return {"Hello": "World"}
 
 
 @functions_framework.http
