@@ -38,12 +38,15 @@ jobs:
               function_name=$(basename $dir)
               echo "Deploying $function_name..."
 
-              # Copy helpers into the current action directory
-              cp -r helpers $dir/
+              # Create a temporary deployment directory
+              deploy_dir=tmp_deploy_$function_name
+              mkdir $deploy_dir
+              cp -r $dir/* $deploy_dir/
+              cp -r helpers $deploy_dir/
 
               # Install dependencies if requirements.txt exists
-              if [ -f "$dir/requirements.txt" ]; then
-                pip install -r $dir/requirements.txt
+              if [ -f "$deploy_dir/requirements.txt" ]; then
+                pip install -r $deploy_dir/requirements.txt
               fi
 
               gcloud functions deploy $function_name \
@@ -51,6 +54,9 @@ jobs:
                 --runtime python39 \
                 --trigger-http \
                 --allow-unauthenticated \
-                --source=$dir
+                --source=$deploy_dir
+
+              # Clean up temporary directory
+              rm -rf $deploy_dir
             fi
           done
