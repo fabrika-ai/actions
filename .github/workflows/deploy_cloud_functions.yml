@@ -1,0 +1,45 @@
+name: Deploy to Google Cloud Functions
+
+on:
+  push:
+    paths:
+      - 'actions/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+
+      - name: Deploy Functions
+        run: |
+          for dir in actions/*; do
+            if [ -d "$dir" ]; then
+              function_name=$(basename $dir)
+              echo "Deploying $function_name..."
+          
+              # Install dependencies if requirements.txt exists
+              if [ -f "$dir/requirements.txt" ]; then
+                pip install -r $dir/requirements.txt
+              fi
+
+              gcloud functions deploy $function_name \
+                --entry-point fastapi_func \
+                --runtime python39 \
+                --trigger-http \
+                --allow-unauthenticated \
+                --source=$dir
+            fi
+          done
