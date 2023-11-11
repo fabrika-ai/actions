@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'actions/**'
+      - './github/workflows/**'
 
 jobs:
   deploy:
@@ -19,7 +20,7 @@ jobs:
           python-version: '3.8'
 
       - name: Authenticate with Google Cloud
-        uses: google-github-actions/setup-gcloud@main
+        uses: google-github-actions/setup-gcloud@v1
         with:
           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
 
