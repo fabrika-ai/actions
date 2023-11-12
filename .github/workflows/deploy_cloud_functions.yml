@@ -58,12 +58,11 @@ jobs:
                 --gen2 \
                 --memory=128MiB \
                 --region us-central1
-              
+          
               gcloud functions add-iam-policy-binding $function_name \
                 --region=us-central1 \
                 --member='allUsers' \
                 --role='roles/cloudfunctions.invoker'
-          
           
               # Clean up temporary directory
               rm -rf $deploy_dir
