@@ -13,20 +13,18 @@ class StockQueryParams(BaseModel):
     ticker: str
     period: str = "1d"  # e.g., "1d", "1mo", "1y"
     interval: str = "1d"  # e.g., "1m", "1d", "1wk"
-    data_points: int = 5  # Number of last data points
 
 
 @app.get("/stock/")
 async def get_stock_data(params: StockQueryParams = Depends()):
     stock = yf.Ticker(params.ticker)
-    # Fetching data based on the provided period and interval
+    # Fetching data based on the provided period (1mo) and interval (1d)
     hist = stock.history(period=params.period, interval=params.interval)
-    if not hist.empty and len(hist) >= params.data_points:
-        # Fetching the last 'data_points' number of entries
-        latest_data = hist.iloc[-params.data_points:]
+    if not hist.empty:
+        # Returning all fetched data
         data = {
             "ticker": params.ticker,
-            "data": latest_data.to_dict(orient="records")
+            "data": hist.to_dict(orient="records")
         }
     else:
         data = {"error": "Insufficient data for ticker or period"}
