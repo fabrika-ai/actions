@@ -57,7 +57,7 @@ jobs:
                 --source=$deploy_dir \
                 --gen2 \
                 --memory=128MiB \
-                --region us-west1
+                --region us-central1
 
               # Clean up temporary directory
               rm -rf $deploy_dir
