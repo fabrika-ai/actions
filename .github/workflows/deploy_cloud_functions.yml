@@ -55,7 +55,8 @@ jobs:
                 --trigger-http \
                 --allow-unauthenticated \
                 --source=$deploy_dir \
-                --memory=128M \
+                --gen2 \
+                --memory=128MiB \
                 --region us-west1
 
               # Clean up temporary directory

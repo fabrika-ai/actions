@@ -6,7 +6,7 @@ from helpers.utils import as_cloud_function
 app = FastAPI()
 
 
-@app.get("/hello_world")
+@app.get("/hello-world")
 async def get_user_name():
     return {"Hello": "World"}
 
