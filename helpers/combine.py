@@ -53,7 +53,7 @@ def get_paths(schema, url):
     return paths
 
 
-functions = ['sum-of-2-values', 'get-user-name', 'template']
+functions = ['sum-of-2-values', 'stock-price-data']
 
 merged_schema = merge_openapi_schemas(functions)
 if merged_schema:
