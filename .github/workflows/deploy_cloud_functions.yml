@@ -55,7 +55,6 @@ jobs:
                 --trigger-http \
                 --allow-unauthenticated \
                 --source=$deploy_dir \
-                --gen2 \
                 --memory=128M \
                 --region us-west1
 
