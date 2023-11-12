@@ -56,7 +56,7 @@ jobs:
                 --allow-unauthenticated \
                 --source=$deploy_dir \
                 --gen2 \
-                --memory=128MiB \
+                --memory=256MiB \
                 --region us-central1
           
               # Clean up temporary directory

@@ -4,7 +4,6 @@ import urllib.parse
 
 BASE_URL = 'https://us-central1-fabrika-404805.cloudfunctions.net/'
 
-
 def merge_openapi_schemas(function_names):
     merged_schema = None
 
@@ -25,10 +24,12 @@ def merge_openapi_schemas(function_names):
             new_paths = {f"/{function_name}{key}": value for key, value in schema['paths'].items()}
             merged_schema['paths'].update(new_paths)
 
-            # Merge components
-            merged_schema['components'].update(schema.get('components', {}))
+            # Safely merge components
+            for component in schema.get('components', {}):
+                merged_schema['components'][component] = merged_schema['components'].get(component, {})
+                merged_schema['components'][component].update(schema['components'][component])
 
-            # Merge servers - ensuring no duplicates
+            # Merge servers while ensuring no duplicates
             servers = set(json.dumps(server) for server in merged_schema.get('servers', []))
             servers.update(json.dumps(server) for server in schema.get('servers', []))
             merged_schema['servers'] = [json.loads(server) for server in servers]
@@ -46,14 +47,7 @@ def get_schema_from_url(url):
         return None
 
 
-def get_paths(schema, url):
-    paths = {}
-    for key, value in schema.get('paths', {}).items():
-        paths[f"/{url}{key}"] = value
-    return paths
-
-
-functions = ['sum-of-2-values', 'stock-price-data']
+functions = ['plot-scalar', 'stock-price-data']
 
 merged_schema = merge_openapi_schemas(functions)
 if merged_schema:
