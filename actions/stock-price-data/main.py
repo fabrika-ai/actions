@@ -18,10 +18,8 @@ class StockQueryParams(BaseModel):
 @app.get("/stock/")
 async def get_stock_data(params: StockQueryParams = Depends()):
     stock = yf.Ticker(params.ticker)
-    # Fetching data based on the provided period (1mo) and interval (1d)
     hist = stock.history(period=params.period, interval=params.interval)
     if not hist.empty:
-        # Returning all fetched data
         data = {
             "ticker": params.ticker,
             "data": hist.to_dict(orient="records")
