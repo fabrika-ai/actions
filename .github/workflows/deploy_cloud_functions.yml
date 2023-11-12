@@ -2,6 +2,8 @@ name: Deploy to Google Cloud Functions
 
 on:
   push:
+    branches:
+      - 'main'
     paths:
       - 'actions/**'
       - '.github/workflows/**'

@@ -1,0 +1,24 @@
+name: Tests
+
+on: [ push, pull_request ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8' # Replace with the version of Python you use
+
+      - name: Discover Actions and Run Tests
+        run: |
+          for dir in $(find ./actions -type f -name 'requirements.txt' -exec dirname {} \;); do
+            echo "Running tests in $dir"
+            python -m pip install --upgrade pip
+            pip install -r $dir/requirements.txt
+            pytest $dir
+          done

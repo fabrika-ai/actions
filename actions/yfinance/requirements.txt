@@ -1,4 +1,5 @@
+functions-framework
 fastapi
 uvicorn
 nest-asyncio
-matplotlib
+yfinance
