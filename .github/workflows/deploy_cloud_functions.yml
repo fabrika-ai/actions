@@ -64,6 +64,7 @@ jobs:
                 --member='allUsers' \
                 --role='roles/cloudfunctions.invoker'
           
+          
               # Clean up temporary directory
               rm -rf $deploy_dir
             fi
