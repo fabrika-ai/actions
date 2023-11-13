@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from actions.get-weather.main import app
+from actions.get_weather.main import app
 
 client = TestClient(app)
 
