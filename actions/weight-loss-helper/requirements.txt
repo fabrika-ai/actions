@@ -1,4 +1,0 @@
-functions-framework
-fastapi
-uvicorn
-nest-asyncio
