@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import functions_framework
-import httpx
+import requests
 
 from helpers.utils import as_cloud_function
 
