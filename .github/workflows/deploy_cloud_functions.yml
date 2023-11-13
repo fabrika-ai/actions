@@ -1,4 +1,4 @@
-name: Deploy to Google Cloud Functions
+name: Deploy Actions to Google Cloud Functions
 
 on:
   push:
