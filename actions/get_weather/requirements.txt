@@ -1,0 +1,5 @@
+functions-framework
+fastapi
+uvicorn
+nest-asyncio
+httpx
