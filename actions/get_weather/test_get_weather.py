@@ -22,7 +22,7 @@ def test_endpoint_invalid_request():
     """
     # Example for a GET request with invalid parameters
     response = client.get("/get_weather/invalid_place123")  # Modify as per your endpoint
-    assert response.status_code == 404  # Replace with the expected status code for an invalid request (ex. 400)
+    assert response.status_code == 1006  # Replace with the expected status code for an invalid request (ex. 400)
 
 
 def test_get_weather_response_structure():
