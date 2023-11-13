@@ -23,7 +23,7 @@ class StockDataResponse(BaseModel):
     error: Optional[str] = None  # Error
 
 
-@app.get("/history/", response_model=StockDataResponse, summary="Get Stock History",
+@app.get("/history", response_model=StockDataResponse, summary="Get Stock History",
          description="Retrieves historical stock data based on ticker, period, and interval.")
 async def get_stock_data(params: StockQueryParams = Depends()):
     stock = yf.Ticker(params.ticker)
