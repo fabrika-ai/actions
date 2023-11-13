@@ -10,7 +10,7 @@ def test_endpoint_success():
     Test the endpoint for a successful response.
     Replace '/hello-world' with the actual endpoint you are testing.
     """
-    response = client.get("/hello-world")  # Use the appropriate HTTP method (get, post, etc.)
+    response = client.get("/get_weather")  # Use the appropriate HTTP method (get, post, etc.)
     assert response.status_code == 200
     # Add more assertions here to validate the response content if needed
 
@@ -21,7 +21,7 @@ def test_endpoint_invalid_request():
     Adjust the request parameters and the expected response code as needed.
     """
     # Example for a GET request with invalid parameters
-    response = client.get("/hello-WORLD?param=invalid")  # Modify as per your endpoint
+    response = client.get("/get_weather/invalid_place123")  # Modify as per your endpoint
     assert response.status_code == 404  # Replace with the expected status code for an invalid request (ex. 400)
 
 
