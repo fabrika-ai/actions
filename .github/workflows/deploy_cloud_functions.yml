@@ -55,7 +55,6 @@ jobs:
                 --entry-point fastapi_func \
                 --runtime python39 \
                 --trigger-http \
-                --allow-unauthenticated \
                 --source=$deploy_dir \
                 --gen2 \
                 --memory=256MiB \
