@@ -22,7 +22,7 @@ def test_get_stock_data_success():
         }
 
 
-def test_get_stock_data_no_data():
+def test_get_stock_data_incorrect_input():
     mock_response = MagicMock()
     mock_response.empty = True
 
