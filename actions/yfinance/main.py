@@ -8,7 +8,7 @@ import yfinance as yf
 
 from helpers.utils import as_cloud_function
 
-app = FastAPI()
+app = FastAPI(servers=[{"url": "https://actions.tryfabrika.com/yfinance"}],)
 
 
 class StockQueryParams(BaseModel):
