@@ -8,11 +8,7 @@ import yfinance as yf
 
 from helpers.utils import as_cloud_function
 
-app = FastAPI(title="Use Y-Finance",
-    description="This is a template project. Please access it from terminal",
-    version="0.0.1",
-    servers=[{"url": "https://actions.tryfabrika.com/yfinance"}]
-    )
+app = FastAPI(servers=[{"url": "https://actions.tryfabrika.com/yfinance"}])
 
 
 class StockQueryParams(BaseModel):
