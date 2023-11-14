@@ -1,6 +1,6 @@
-# Extend ChatGPT with Custom Actions
+# Extend ChatGPT with Community Actions
 
-Welcome to our project where we empower ChatGPT with custom actions! This is an open invitation for developers like you to contribute and enrich ChatGPT's capabilities. Join us in building an extensive, dynamic, and diverse set of actions that ChatGPT can perform.
+Welcome to our project where we empower ChatGPT with custom community actions! This is an open invitation for developers like you to contribute and enrich ChatGPT's capabilities. Join us in building an extensive, dynamic, and diverse set of actions that ChatGPT can perform.
 
 ## About This Project
 
