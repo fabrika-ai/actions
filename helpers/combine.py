@@ -2,41 +2,38 @@ import json
 import requests
 import urllib.parse
 
-BASE_URL = 'https://us-central1-fabrika-404805.cloudfunctions.net/'
+BASE_URL = 'https://actions.tryfabrika.com/'
+BASE_OPENAPI_CONFIG = {
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Fabrika",
+        "version": "alpha"
+    },
+    "servers": [
+        {
+            "url": BASE_URL
+        }
+    ],
+    "paths": {},
+    "components": {},
+}
 
 
 def merge_openapi_schemas(function_names):
-    merged_schema = None
+    merged_schema = BASE_OPENAPI_CONFIG.copy()
 
     for function_name in function_names:
         schema = get_schema_from_url(
             urllib.parse.urljoin(BASE_URL, function_name + "/openapi.json")
         )
-
-        if schema is None:
-            return None
-
-        if merged_schema is None:
-            merged_schema = schema
-            # Prefix the initial paths with the function name
-            merged_schema['paths'] = {f"/{function_name}{key}": value for key, value in schema['paths'].items()}
-        else:
-            # Update paths with new function name prefix
-            new_paths = {f"/{function_name}{key}": value for key, value in schema['paths'].items()}
-            merged_schema['paths'].update(new_paths)
-
-            # Merge components
-            merged_schema['components'].update(schema.get('components', {}))
-
-            # Merge servers - ensuring no duplicates
-            servers = set(json.dumps(server) for server in merged_schema.get('servers', []))
-            servers.update(json.dumps(server) for server in schema.get('servers', []))
-            merged_schema['servers'] = [json.loads(server) for server in servers]
+        merged_schema["paths"].update(get_paths(schema, function_name))
+        merged_schema["components"].update(schema.get("components", {}))
 
     return merged_schema
 
 
 def get_schema_from_url(url):
+    print(url)
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -53,7 +50,7 @@ def get_paths(schema, url):
     return paths
 
 
-functions = ['sum-of-2-values', 'yfinance']
+functions = ['template', 'yfinance']
 
 merged_schema = merge_openapi_schemas(functions)
 if merged_schema:
