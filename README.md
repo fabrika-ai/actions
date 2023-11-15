@@ -3,7 +3,6 @@
 Do you have a GPT Assistant? Would you like it to do more? 
 
 # About
-
 Welcome to our project where we empower ChatGPT with Community Actions! This is an open invitation for developers like you to contribute and enrich ChatGPT's capabilities. 
 
 Join us in building an extensive, dynamic, and diverse set of actions that ChatGPT can perform.
@@ -18,7 +17,7 @@ Anyhing! 'Generate Image' is an Action, 'Calculate square root of 4' is an actio
 You can use any Actions from this repo, you can also create a new one. We are hosting your actions and make integration to GPT Assistants seemless.
 
 # Setup
-## How to Create your own "Community actions"?
+## How to Create your own Community Actions?
 
 Your community actions can make a significant difference! Here’s how you can get involved:
 
