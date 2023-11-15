@@ -12,13 +12,15 @@ We are in a private.beta, if you would like to get API key for testing please si
 
 ## How to Run an action from "Community Actions"
 
-Once you create an action in Python, go to [GPT Editor](https://chat.openai.com/gpts/editor) -> Configure -> Scroll to the very bottom -> Add action -> Click `Import from URL` use link `https://actions.tryfabrika.com/combine?actions=<YOUR ACTION>`, where `<YOUR ACTION>` is a name of your action (e.g. `template`). Now, in Authentification -> Click on edit -> choose Authentication Type: API Key -> insert your API key -> choose Auth Type: Bearer and you are all set.
+1. Decide what actions you plan to use in your GPT.
+2. Go to [GPT Editor](https://chat.openai.com/gpts/editor) -> Configure -> Scroll to the very bottom -> Add action -> Click `Import from URL`
+3. Paste `https://actions.tryfabrika.com/combine?actions=<ACTIONS>`, where `<ACTIONS>` is a list of action separated with `,`:
+   - Examples:
+     - Single action: `https://actions.tryfabrika.com/combine?actions=yfinance`
+     - Multiple actions: `https://actions.tryfabrika.com/combine?actions=template,yfinance`
+4. Go to Authentification -> Click on `Edit` -> Select `API Key` -> Insert your API key -> Select `Bearer` at `Auth Type`
 
 Congrats! Your action is ready to be used by ChatGPT!
-
-## How to Сombine Comunity actions
-
-You can create sets of actions, that ChatGPT will be able to perform. To do that, just follow the logic in the URL: `https://actions.tryfabrika.com/combine?actions=<ACTION1>,<ACTION2>,<...>`
 
 ## How to Create your own "Community actions"?
 
