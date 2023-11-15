@@ -1,18 +1,20 @@
 # Extend ChatGPT with Community Actions
 
+# About
 Do you have a GPT Assistant? Would you like it to do more? 
 
 Welcome to our project where we empower ChatGPT with Community Actions! This is an open invitation for developers like you to contribute and enrich ChatGPT's capabilities. 
 
 Join us in building an extensive, dynamic, and diverse set of actions that ChatGPT can perform.
 
-# About
-
 ## What is an Action?
 Action is a way for GPT to perform various tasks or functions beyond standard text generation. It’s a way to extend the utility of ChatGPT. 
 
 ## What could be an Action?
 Anyhing! 'Generate Image' is an Action, 'Calculate square root of 4' is an action, and so is 'Send my mom a text'.
+
+## How does it work?
+You can use any Actions from this repo, you can also create a new one. we are hosting your actions and make integration to GPT Assistants seemless.
 
 # Setup
 ## How to Create your own "Community actions"?
