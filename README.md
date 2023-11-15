@@ -6,9 +6,23 @@ Welcome to our project where we empower ChatGPT with custom community actions! T
 
 We've developed a way to seamlessly integrate custom actions into ChatGPT using FastAPI. This allows ChatGPT to perform a wide range of functions, from fetching stock data to generating graphs, and even interacting with external APIs. Our goal is to expand ChatGPT's utility and make it a more versatile tool for users across various domains.
 
-## How to Contribute
+## API key access 
 
-Your contributions can make a significant difference! Here’s how you can get involved:
+We are in a private.beta, if you would like to get API key for testing please sign up to a waitlist: https://forms.gle/V18giB3upYiG7ARq8
+
+## How to Run an action from "Community Actions"
+
+Once you create an action in Python, use 
+
+```bash
+curl -H "Authorization: Bearer <API_KEY>" "https://actions.tryfabrika.com/<NAME OF ACTION>/openapi.json"
+```
+
+to fetch OpenAPI schema. Once you have that, go to [GPT Editor](https://chat.openai.com/gpts/editor) -> Configure -> scroll to the very bottom -> Add action -> and copy paste your action in the OpenAPI schema. Congrats! Your action is ready to be used by ChatGPT!
+
+## How to Create your own "Community actions"?
+
+Your community actions can make a significant difference! Here’s how you can get involved:
 
 - **Fork the Repository**: Start by forking this repository to your GitHub account.
 - **Create Your Action**: Develop your custom action using FastAPI. Check out our existing examples for inspiration.
