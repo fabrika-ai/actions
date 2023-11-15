@@ -10,7 +10,7 @@ Join us in building an extensive, dynamic, and diverse set of actions that ChatG
 Action is a way for GPT to perform various tasks or functions beyond standard text generation. It’s a way to extend the utility of ChatGPT. 
 
 ## What could be an Action?
-Anyhing! 'Generate Image' is an Actiob, 'Calculate square root of 4' is an action, and so is 'Send my mom a text'.
+Anyhing! 'Generate Image' is an Action, 'Calculate square root of 4' is an action, and so is 'Send my mom a text'.
 
 ## API key access 
 
