@@ -17,7 +17,7 @@ Anyhing! 'Generate Image' is an Action, 'Calculate square root of 4' is an actio
 You can use any Actions from this repo, you can also create a new one. We are hosting your actions and make integration to GPT Assistants seemless.
 
 # Setup
-## How to Create your own Community Actions?
+## How to Create your own Custom GPT Actions?
 
 Your community actions can make a significant difference! Here’s how you can get involved:
 
