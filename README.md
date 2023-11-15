@@ -12,13 +12,13 @@ We are in a private.beta, if you would like to get API key for testing please si
 
 ## How to Run an action from "Community Actions"
 
-Once you create an action in Python, use 
+Once you create an action in Python, go to [GPT Editor](https://chat.openai.com/gpts/editor) -> Configure -> Scroll to the very bottom -> Add action -> Click `Import from URL` use link `https://actions.tryfabrika.com/combine?actions=<YOUR ACTION>`, where <YOUR ACTION> is a name of your action (e.g. `template`). Now, in Authentification click on edit, choose Authentication Type: API Key, insert your API key, choose Auth Type: Bearer and you are all set.
 
-```bash
-curl -H "Authorization: Bearer <API_KEY>" "https://actions.tryfabrika.com/<NAME OF ACTION>/openapi.json"
-```
+Congrats! Your action is ready to be used by ChatGPT!
 
-to fetch OpenAPI schema. Once you have that, go to [GPT Editor](https://chat.openai.com/gpts/editor) -> Configure -> scroll to the very bottom -> Add action -> and copy paste your action in the OpenAPI schema. Congrats! Your action is ready to be used by ChatGPT!
+## How to Сombine Comunity actions
+
+You can create sets of actions, that ChatGPT will be able to perform. To do that, just follow the logic in the URL: `https://actions.tryfabrika.com/combine?actions=<ACTION1>,<ACTION2>,<...>`
 
 ## How to Create your own "Community actions"?
 
@@ -26,6 +26,10 @@ Your community actions can make a significant difference! Here’s how you can g
 
 - **Fork the Repository**: Start by forking this repository to your GitHub account.
 - **Create Your Action**: Develop your custom action using FastAPI. Check out our existing examples for inspiration.
+  - Duplicate `template` folder
+  - Rename it to `<YOUR ACTION NAME>`
+  - Edit `main.py` to create your actions
+  - Edit `test_<YOUR ACTION>` and add relevant unit tests 
 - **Test Your Code**: Ensure your action works as expected. We love robust and reliable contributions!
 - **Document Your Action**: Write clear and concise documentation for your action. This should include its purpose, how it works, and any necessary parameters.
 - **Submit a Pull Request**: Once your action is ready and documented, submit a pull request to our repository.
