@@ -1,10 +1,14 @@
 # Extend ChatGPT with Community Actions
 
-Welcome to our project where we empower ChatGPT with custom community actions! This is an open invitation for developers like you to contribute and enrich ChatGPT's capabilities. Join us in building an extensive, dynamic, and diverse set of actions that ChatGPT can perform.
+Do you have a GPT Assistant? Would you like it to do more? 
 
-## About This Project
+Welcome to our project where we empower ChatGPT with Community Actions! This is an open invitation for developers like you to contribute and enrich ChatGPT's capabilities. Join us in building an extensive, dynamic, and diverse set of actions that ChatGPT can perform.
 
-We've developed a way to seamlessly integrate custom actions into ChatGPT using FastAPI. This allows ChatGPT to perform a wide range of functions, from fetching stock data to generating graphs, and even interacting with external APIs. Our goal is to expand ChatGPT's utility and make it a more versatile tool for users across various domains.
+## What is an Action
+Action is a way for GPT to perform various tasks or functions beyond standard text generation. It’s a way to extend the utility of ChatGPT. 
+
+## What could be an Action?
+Anyhing! 'Generate Image' is an Actiob, 'Calculate square root of 4' is an action, and so is 'Send my mom a text'.
 
 ## API key access 
 
