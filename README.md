@@ -2,7 +2,9 @@
 
 Do you have a GPT Assistant? Would you like it to do more? 
 
-Welcome to our project where we empower ChatGPT with Community Actions! This is an open invitation for developers like you to contribute and enrich ChatGPT's capabilities. Join us in building an extensive, dynamic, and diverse set of actions that ChatGPT can perform.
+Welcome to our project where we empower ChatGPT with Community Actions! This is an open invitation for developers like you to contribute and enrich ChatGPT's capabilities. 
+
+Join us in building an extensive, dynamic, and diverse set of actions that ChatGPT can perform.
 
 ## What is an Action
 Action is a way for GPT to perform various tasks or functions beyond standard text generation. It’s a way to extend the utility of ChatGPT. 
