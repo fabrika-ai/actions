@@ -6,7 +6,7 @@ Welcome to our project where we empower ChatGPT with Community Actions! This is 
 
 Join us in building an extensive, dynamic, and diverse set of actions that ChatGPT can perform.
 
-## What is an Action
+## What is an Action?
 Action is a way for GPT to perform various tasks or functions beyond standard text generation. It’s a way to extend the utility of ChatGPT. 
 
 ## What could be an Action?
