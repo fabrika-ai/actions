@@ -1,7 +1,8 @@
 # Extend ChatGPT with Community Actions
 
-# About
 Do you have a GPT Assistant? Would you like it to do more? 
+
+# About
 
 Welcome to our project where we empower ChatGPT with Community Actions! This is an open invitation for developers like you to contribute and enrich ChatGPT's capabilities. 
 
