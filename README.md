@@ -15,7 +15,7 @@ Action is a way for GPT to perform various tasks or functions beyond standard te
 Anyhing! 'Generate Image' is an Action, 'Calculate square root of 4' is an action, and so is 'Send my mom a text'.
 
 ## How does it work?
-You can use any Actions from this repo, you can also create a new one. we are hosting your actions and make integration to GPT Assistants seemless.
+You can use any Actions from this repo, you can also create a new one. We are hosting your actions and make integration to GPT Assistants seemless.
 
 # Setup
 ## How to Create your own "Community actions"?
