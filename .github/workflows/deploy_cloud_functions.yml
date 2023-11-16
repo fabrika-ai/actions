@@ -59,7 +59,7 @@ jobs:
                 --gen2 \
                 --memory=256MiB \
                 --region us-central1 \
-                --set-env-vars=$(python deployment/export_secrets.py)
+                --set-env-vars=OPENAI_API_KEY=${{secrets.OPENAI_API_KEY}}	
           
               rm -rf $deploy_dir
             fi
