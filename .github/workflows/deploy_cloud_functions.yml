@@ -35,6 +35,9 @@ jobs:
 
       - name: Deploy Functions
         run: |
+          # Read API keys from api_keys.py
+          api_keys=$(python -c "from actions.api_keys import API_KEYS; print(','.join([f'{key}=${{secrets.' + key + '}}' for key in API_KEYS]))")
+
           for dir in actions/*; do
             if [ -d "$dir" ]; then
               function_name=$(basename $dir)
@@ -51,6 +54,7 @@ jobs:
                 pip install -r $deploy_dir/requirements.txt
               fi
 
+              # Deploy the function with environment variables
               gcloud functions deploy $function_name \
                 --entry-point fastapi_func \
                 --runtime python39 \
@@ -58,7 +62,8 @@ jobs:
                 --source=$deploy_dir \
                 --gen2 \
                 --memory=256MiB \
-                --region us-central1
+                --region us-central1 \
+                --set-env-vars=$api_keys
           
               # Clean up temporary directory
               rm -rf $deploy_dir
