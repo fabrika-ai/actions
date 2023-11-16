@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from actions.template.main import app
+from actions.pizza.main import app
 
 client = TestClient(app)
 
@@ -9,7 +9,7 @@ def test_record_calories_success():
     """
     response = client.post("/record-calories", json={"calories": 500})
     print(response.status_code)
-    
+
     assert response.status_code == 200
     assert "Remaining calories for the day" in response.json().get("Message", "")
 
