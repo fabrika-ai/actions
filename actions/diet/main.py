@@ -27,9 +27,9 @@ class Diet(BaseModel):
 
 class Meal(BaseModel):
     title: str
-    fats_grams: Optional[int]
-    proteins_grams: Optional[int]
-    carbohydrates_grams: Optional[int]
+    fats_grams: int
+    proteins_grams: int
+    carbohydrates_grams: int
     calories_amount: int
     products: List[str]
 
