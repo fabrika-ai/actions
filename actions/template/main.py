@@ -24,6 +24,8 @@ async def generate_completion(question: str):
             {"role": "user", "content": question}
         ]
     )
+    print(completion)
+    print(completion.choices[0].message.content)
     return {
         "answer": completion.choices[0].message.content
     }
