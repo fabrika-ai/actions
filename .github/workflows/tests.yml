@@ -21,8 +21,6 @@ jobs:
 
       - name: Discover Actions and Run Tests
         run: |
-          export PYTHONPATH=$PYTHONPATH:$(pwd)
-          while IFS= read -r line; do eval "$line"; done < <(python deployment/export_secrets.py)
           for dir in $(find ./actions -type f -name 'requirements.txt' -exec dirname {} \;); do
             echo "Running tests in $dir"
             pip install -r $dir/requirements.txt

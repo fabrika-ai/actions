@@ -7,6 +7,7 @@ def generate_export_commands():
         commands.append(f"echo 'export {key}=${{secrets.{key}}}'")
     return commands
 
+
 if __name__ == "__main__":
     for cmd in generate_export_commands():
         print(cmd)

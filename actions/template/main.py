@@ -8,9 +8,6 @@ import functions_framework
 from helpers.utils import as_cloud_function
 
 app = FastAPI()
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY") or None
-)
 
 
 @app.get("/hello-world")
@@ -20,6 +17,7 @@ async def get_user_name():
 
 @app.post("/question-answering")
 async def generate_completion(question: str):
+    client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
