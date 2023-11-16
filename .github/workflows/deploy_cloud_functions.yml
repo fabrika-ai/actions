@@ -35,7 +35,9 @@ jobs:
 
       - name: Generate Environment Variables String
         id: generate_env_vars
-        run: echo "ENV_VARS=$(python deployment/export_secrets.py)" >> $GITHUB_ENV
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
+          echo "ENV_VARS=$(python deployment/generate_env_vars.py)" >> $GITHUB_ENV
 
       - name: 'Deploy Functions'
         run: |
