@@ -33,9 +33,8 @@ jobs:
       - name: 'Use gcloud CLI'
         run: 'gcloud info'
 
-      - name: Deploy Functions
+      - name: 'Deploy Functions'
         run: |
-          # Read API keys from api_keys.py
           api_keys=$(python -c "from actions.api_keys import API_KEYS; print(','.join([f'{key}=${{secrets.' + key + '}}' for key in API_KEYS]))")
 
           for dir in actions/*; do
@@ -43,18 +42,15 @@ jobs:
               function_name=$(basename $dir)
               echo "Deploying $function_name..."
 
-              # Create a temporary deployment directory
               deploy_dir=tmp_deploy_$function_name
               mkdir $deploy_dir
               cp -r $dir/* $deploy_dir/
               cp -r helpers $deploy_dir/
 
-              # Install dependencies if requirements.txt exists
               if [ -f "$deploy_dir/requirements.txt" ]; then
                 pip install -r $deploy_dir/requirements.txt
               fi
 
-              # Deploy the function with environment variables
               gcloud functions deploy $function_name \
                 --entry-point fastapi_func \
                 --runtime python39 \
@@ -65,7 +61,6 @@ jobs:
                 --region us-central1 \
                 --set-env-vars=$api_keys
           
-              # Clean up temporary directory
               rm -rf $deploy_dir
             fi
           done
