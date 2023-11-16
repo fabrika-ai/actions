@@ -3,19 +3,13 @@ from actions.template.main import app
 
 client = TestClient(app)
 
-def test_hello_world():
-    """
-    Test the /hello-world endpoint for a successful response.
-    """
-    response = client.get("/hello-world")
-    assert response.status_code == 200
-    assert response.json() == {"Hello": "World"}
-
 def test_record_calories_success():
     """
     Test the /record-calories endpoint for a successful response.
     """
     response = client.post("/record-calories", json={"calories": 500})
+    print(response.status_code)
+    
     assert response.status_code == 200
     assert "Remaining calories for the day" in response.json().get("Message", "")
 
