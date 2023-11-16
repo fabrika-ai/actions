@@ -1,19 +1,12 @@
-import os
-import json
+# export_secrets.py
 
-
-def export_secrets():
-    api_keys_file = 'actions/api_keys.py'
-    namespace = {}
-    with open(api_keys_file) as f:
-        exec(f.read(), namespace)
-
-    api_keys = namespace['API_KEYS']
-    secrets = json.loads(os.environ['SECRETS'])
-
-    for key in api_keys:
-        os.environ[key] = secrets.get(key, '')
-
+def generate_export_commands():
+    from actions.api_keys import API_KEYS  # Adjust the import path as necessary
+    commands = []
+    for key in API_KEYS:
+        commands.append(f"echo 'export {key}=${{{key}}}'")
+    return commands
 
 if __name__ == "__main__":
-    export_secrets()
+    for cmd in generate_export_commands():
+        print(cmd)

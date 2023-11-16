@@ -20,9 +20,9 @@ jobs:
           pip install pytest httpx functions-framework
 
       - name: Export API Keys as Environment Variables
-        run: python deployment/export_secrets.py
-        env:
-          SECRETS: ${{ toJson(secrets) }}
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
+          while IFS= read -r line; do eval "$line"; done < <(python deployment/export_secrets.py)
 
       - name: Discover Actions and Run Tests
         run: |
