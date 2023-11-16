@@ -19,9 +19,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest httpx functions-framework
 
-      - name: Discover Actions and Run Tests
+      - name: Export API Keys as Environment Variables
         run: |
           export PYTHONPATH=$PYTHONPATH:$(pwd)
+          api_keys=$(python -c "from actions.api_keys import API_KEYS; print(' '.join([f'export {key}=${{secrets.' + key + '}}' for key in API_KEYS]))")
+          eval $api_keys
+
+      - name: Discover Actions and Run Tests
+        run: |
           for dir in $(find ./actions -type f -name 'requirements.txt' -exec dirname {} \;); do
             echo "Running tests in $dir"
             pip install -r $dir/requirements.txt
