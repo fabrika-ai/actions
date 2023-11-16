@@ -24,7 +24,7 @@ You can use any Actions from this repo, you can also create a new one. We are ho
    - Examples:
      - Single action: `https://actions.tryfabrika.com/combine?actions=yfinance`
      - Multiple actions: `https://actions.tryfabrika.com/combine?actions=template,yfinance`
-4. Go to Authentification -> Click on `Edit` -> Select `API Key` -> Insert your API key -> Select `Bearer` at `Auth Type`.
+4. Go to Authentification -> Click on `Settings` -> Select `API Key` -> Insert your API key -> Select `Bearer` at `Auth Type`.
 
 Congrats! Your actions are ready to be used by ChatGPT!
 
