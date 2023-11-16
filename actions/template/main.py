@@ -15,7 +15,7 @@ async def get_user_name():
     return {"Hello": "World"}
 
 
-@app.post("/question-answering")
+@app.get("/question-answering")
 async def generate_completion(question: str):
     client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
     completion = client.chat.completions.create(
