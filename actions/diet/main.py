@@ -15,14 +15,14 @@ class Diet(BaseModel):
     prohibited_foods: List[str]
     recommended_foods: List[str]
     not_recommended_foods: List[str]
-    cabrohydrates_restriction_grams: Optional[int]
-    cabrohydrates_restriction_description: Optional[str]
-    proteins_restriction_grams: Optional[int]
-    proteins_restriction_description: Optional[str]
-    fats_restriction_grams: Optional[int]
-    fats_restriction_description: Optional[str]
-    calories_restriction: Optional[int]
-    calories_restriction_description: Optional[str]
+    cabrohydrates_restriction_grams: int
+    cabrohydrates_restriction_description: str
+    proteins_restriction_grams: int
+    proteins_restriction_description: str
+    fats_restriction_grams: int
+    fats_restriction_description: str
+    calories_restriction: int
+    calories_restriction_description: str
 
 
 class Meal(BaseModel):
