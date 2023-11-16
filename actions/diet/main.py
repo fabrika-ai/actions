@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union
 
 import functions_framework
 from helpers.utils import as_cloud_function
@@ -34,9 +34,21 @@ class Meal(BaseModel):
     products: List[str]
 
 
+class MealsSummary(BaseModel):
+    total_calories: int
+    total_fats: int
+    total_proteins: int
+    total_carbohydrates: int
+    meals: List[str]
+    remaining_calories: int
+    remaining_fats: int
+    remaining_proteins: int
+    remaining_carbohydrates: int
+
+
 # Globals
 DAILY_CALORIE_LIMIT = 2000  # Set your daily calorie limit
-diet = None
+diet: Union[Diet, None] = None
 daily_meal_history: List[Meal] = []
 
 
@@ -63,11 +75,36 @@ async def add_meal(meal: Meal):
 
 
 @app.get("/meal")
-async def get_meals():
+async def get_meals() -> MealsSummary:
     global daily_meal_history
     if not daily_meal_history:
         raise HTTPException(status_code=404, detail="No meals recorded")
-    return daily_meal_history
+
+    if diet is None:
+        raise HTTPException(status_code=404, detail="Diet not set")
+
+    total_calories = sum(meal.calories_amount for meal in daily_meal_history)
+    total_fats = sum(meal.fats_grams for meal in daily_meal_history)
+    total_proteins = sum(meal.proteins_grams for meal in daily_meal_history)
+    total_carbohydrates = sum(meal.carbohydrates_grams for meal in daily_meal_history)
+    meals = [meal.title for meal in daily_meal_history]
+
+    remaining_calories = diet.calories_restriction - total_calories
+    remaining_fats = diet.fats_restriction_grams - total_fats
+    remaining_proteins = diet.proteins_restriction_grams - total_proteins
+    remaining_carbohydrates = diet.calories_restriction - total_carbohydrates
+
+    return MealsSummary(
+        total_calories=total_calories,
+        total_fats=total_fats,
+        total_proteins=total_proteins,
+        total_carbohydrates=total_carbohydrates,
+        meals=meals,
+        remaining_calories=remaining_calories,
+        remaining_fats=remaining_fats,
+        remaining_proteins=remaining_proteins,
+        remaining_carbohydrates=remaining_carbohydrates,
+    )
 
 
 @functions_framework.http
