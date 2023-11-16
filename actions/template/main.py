@@ -9,7 +9,7 @@ from helpers.utils import as_cloud_function
 
 app = FastAPI()
 client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY")
+    api_key=os.environ.get("OPENAI_API_KEY") or None
 )
 
 
