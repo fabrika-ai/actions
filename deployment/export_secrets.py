@@ -1,13 +1,8 @@
-# export_secrets.py
 
-def generate_export_commands():
+def generate_env_vars_string():
     from actions.api_keys import API_KEYS  # Adjust the import path as necessary
-    commands = []
-    for key in API_KEYS:
-        commands.append(f"echo 'export {key}=${{secrets.{key}}}'")
-    return commands
-
+    env_vars = [f"{key}=${{{key}}}" for key in API_KEYS]
+    return ",".join(env_vars)
 
 if __name__ == "__main__":
-    for cmd in generate_export_commands():
-        print(cmd)
+    print(generate_env_vars_string())

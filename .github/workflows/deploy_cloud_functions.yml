@@ -33,10 +33,12 @@ jobs:
       - name: 'Use gcloud CLI'
         run: 'gcloud info'
 
+      - name: Generate Environment Variables String
+        id: generate_env_vars
+        run: echo "ENV_VARS=$(python deployment/export_secrets.py)" >> $GITHUB_ENV
+
       - name: 'Deploy Functions'
         run: |
-          api_keys=$(python -c "from actions.api_keys import API_KEYS; print(','.join([f'{key}=${{secrets.' + key + '}}' for key in API_KEYS]))")
-
           for dir in actions/*; do
             if [ -d "$dir" ]; then
               function_name=$(basename $dir)
@@ -59,7 +61,7 @@ jobs:
                 --gen2 \
                 --memory=256MiB \
                 --region us-central1 \
-                --set-env-vars=$api_keys
+                --set-env-vars=${{ env.ENV_VARS }}
           
               rm -rf $deploy_dir
             fi
