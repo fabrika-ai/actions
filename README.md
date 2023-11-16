@@ -16,6 +16,18 @@ Anyhing! 'Generate Image' is an Action, 'Calculate square root of 4' is an actio
 ## How does it work?
 You can use any Actions from this repo, you can also create a new one. We are hosting your actions and make integration to GPT Assistants seemless.
 
+# Getting started
+## How to Run an action from "Community Actions"
+1. Decide what actions you plan to use in your GPT.
+2. Go to [GPT Editor](https://chat.openai.com/gpts/editor) -> Configure -> Scroll to the very bottom -> Click `Add actions` -> Click `Import from URL`.
+3. Paste `https://actions.tryfabrika.com/combine?actions=<ACTIONS>`, where `<ACTIONS>` is a list of action separated with `,`:
+   - Examples:
+     - Single action: `https://actions.tryfabrika.com/combine?actions=yfinance`
+     - Multiple actions: `https://actions.tryfabrika.com/combine?actions=template,yfinance`
+4. Go to Authentification -> Click on `Edit` -> Select `API Key` -> Insert your API key -> Select `Bearer` at `Auth Type`.
+
+Congrats! Your actions are ready to be used by ChatGPT!
+
 # Setup
 ## How to Create your own Custom GPT Actions?
 
@@ -36,17 +48,6 @@ Your community actions can make a significant difference! Here’s how you can g
 
 We are in a private.beta, if you would like to get API key for testing please sign up to a waitlist: https://forms.gle/V18giB3upYiG7ARq8
 
-## How to Run an action from "Community Actions"
-
-1. Decide what actions you plan to use in your GPT.
-2. Go to [GPT Editor](https://chat.openai.com/gpts/editor) -> Configure -> Scroll to the very bottom -> Click `Add actions` -> Click `Import from URL`.
-3. Paste `https://actions.tryfabrika.com/combine?actions=<ACTIONS>`, where `<ACTIONS>` is a list of action separated with `,`:
-   - Examples:
-     - Single action: `https://actions.tryfabrika.com/combine?actions=yfinance`
-     - Multiple actions: `https://actions.tryfabrika.com/combine?actions=template,yfinance`
-4. Go to Authentification -> Click on `Edit` -> Select `API Key` -> Insert your API key -> Select `Bearer` at `Auth Type`.
-
-Congrats! Your actions are ready to be used by ChatGPT!
 
 ## Guidelines for Contribution
 
