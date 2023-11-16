@@ -25,7 +25,7 @@ async def generate_completion(question: str):
         ]
     )
     return {
-        "answer": completion.choices[0].message
+        "answer": completion.choices[0].message.content
     }
 
 
