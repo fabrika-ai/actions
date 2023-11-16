@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
 from actions.pizza.main import app
 
+
 client = TestClient(app)
 
 def test_record_calories_success():
@@ -8,8 +9,6 @@ def test_record_calories_success():
     Test the /record-calories endpoint for a successful response.
     """
     response = client.post("/record-calories", json={"calories": 500})
-    print(response.status_code)
-
     assert response.status_code == 200
     assert "Remaining calories for the day" in response.json().get("Message", "")
 
@@ -17,8 +16,7 @@ def test_record_calories_exceed_limit():
     """
     Test the /record-calories endpoint for exceeding the calorie limit.
     """
-    # Assuming the daily limit is 2000 and we already recorded 500 calories
-    response = client.post("/record-calories", json={"calories": 1600})
+    response = client.post("/record-calories", json={"calories": 2000})
     assert response.status_code == 200
     assert response.json() == {"Error": "Calorie limit exceeded"}
 
@@ -34,9 +32,11 @@ def test_find_pizza_failure():
     """
     Test the /find-pizza endpoint for a situation where no pizza fits the calorie limit.
     """
-    # Assuming the daily limit is already exceeded or very close to being exceeded
+    # Record enough calories to exceed the limit
+    client.post("/record-calories", json={"calories": 2000})
     response = client.get("/find-pizza")
     assert response.status_code == 404
+    assert response.json() == {"detail": "No pizza fits the remaining calorie limit"}
 
 def test_order_pizza_success():
     """
@@ -52,3 +52,4 @@ def test_order_pizza_failure():
     """
     response = client.post("/order-pizza", json={"pizza_name": "Unknown"})
     assert response.status_code == 404
+    assert response.json() == {"detail": "Pizza not found"}
