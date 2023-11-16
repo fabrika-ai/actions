@@ -41,14 +41,14 @@ daily_meal_history: List[Meal] = []
 
 
 @app.post("/diet")
-async def record_calories(new_diet: Diet):
+async def set_current_diet(new_diet: Diet):
     global diet
     diet = new_diet
     return {"Message": f"Diet set successfully."}
 
 
 @app.get("/diet")
-async def find_pizza():
+async def get_current_diet():
     global diet
     if diet is None:
         raise HTTPException(status_code=404, detail="Diet not set")
