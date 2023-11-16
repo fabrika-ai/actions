@@ -1,7 +1,7 @@
 
 def generate_env_vars_string():
     from actions.api_keys import API_KEYS  # Adjust the import path as necessary
-    env_vars = [f"{key}=${{{key}}}" for key in API_KEYS]
+    env_vars = [f"{key}=${{secrets.{key}}}" for key in API_KEYS]
     return ",".join(env_vars)
 
 if __name__ == "__main__":
