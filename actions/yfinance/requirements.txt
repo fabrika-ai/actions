@@ -3,4 +3,3 @@ uvicorn
 gunicorn==20.0.4
 nest-asyncio
 yfinance
-
