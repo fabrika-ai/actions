@@ -15,6 +15,10 @@ class Product(BaseModel):
     price: float
 
 
+class AvailableProductsResponse(BaseModel):
+    products: List[Product]
+
+
 class OrderRequest(BaseModel):
     products: List[str]
     delivery_address: str
@@ -70,7 +74,7 @@ def get_total_cost(products: List[str]) -> float:
     return total_cost
 
 
-@app.get("/get-products", response_model=Dict[str, float], summary="Get Available Products")
+@app.get("/get-products", response_model=AvailableProductsResponse, summary="Get Available Products")
 async def get_products():
     """
     Retrieve the list of available products with their prices.
@@ -78,7 +82,14 @@ async def get_products():
     Returns:
         dict: A dictionary of product names and their prices.
     """
-    return products_list
+    products = [
+        Product(
+            name=name,
+            price=price
+        )
+        for name, price in products_list.items()
+    ]
+    return AvailableProductsResponse(products=products)
 
 
 @app.post("/calculate-total-cost", response_model=TotalCostResponse, summary="Calculate Total Cost of Products")
