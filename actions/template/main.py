@@ -1,7 +1,6 @@
 import os
 
 from openai import OpenAI
-
 from fastapi import FastAPI
 import functions_framework
 
@@ -24,8 +23,6 @@ async def generate_completion(question: str):
             {"role": "user", "content": question}
         ]
     )
-    print(completion)
-    print(completion.choices[0].message.content)
     return {
         "answer": completion.choices[0].message.content
     }
