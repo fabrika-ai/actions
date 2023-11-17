@@ -1,4 +1,6 @@
 import os
+import random
+import time
 import uuid
 from typing import List, Dict
 from fastapi import FastAPI, HTTPException, Body
@@ -129,8 +131,10 @@ async def order(request: OrderRequest):
 
     return {
         "order_id": str(uuid.uuid4()),
+        "timestamp": str(time.time()),
         "total_cost": total_cost,
-        "delivery_address": request.delivery_address
+        "delivery_address": request.delivery_address,
+        "estimated_time": str(random.randint(10, 25)) + " minutes"
     }
 
 
