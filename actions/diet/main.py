@@ -1,3 +1,4 @@
+import json
 from fastapi import FastAPI, HTTPException
 from typing import Dict, List, Optional, Union
 
@@ -8,6 +9,35 @@ from pydantic import BaseModel
 
 
 app = FastAPI()
+
+
+def load_diet():
+    try:
+        with open("diet.json", "r") as f:
+            diet = Diet(**json.load(f))
+    except FileNotFoundError:
+        diet = None
+    return diet
+
+
+def load_meals():
+    try:
+        with open("meals.json", "r") as f:
+            meals = [Meal(**meal) for meal in json.load(f)]
+    except FileNotFoundError:
+        meals = []
+    return meals
+
+
+def save_diet(diet):
+    if diet is not None:
+        with open("diet.json", "w") as f:
+            json.dump(diet.dict(), f)
+
+
+def save_meals(meals):
+    with open("meals.json", "w") as f:
+        json.dump([meal.dict() for meal in meals], f)
 
 
 ## Diet
@@ -47,21 +77,17 @@ class MealsSummary(BaseModel):
 
 
 # Globals
-DAILY_CALORIE_LIMIT = 2000  # Set your daily calorie limit
-diet: Union[Diet, None] = None
-daily_meal_history: List[Meal] = []
 
 
 @app.post("/diet")
 async def set_current_diet(new_diet: Diet):
-    global diet
-    diet = new_diet
+    save_diet(new_diet)
     return {"Message": f"Diet set successfully."}
 
 
 @app.get("/diet")
 async def get_current_diet():
-    global diet
+    diet = load_diet()
     if diet is None:
         raise HTTPException(status_code=404, detail="Diet not set")
     return diet
@@ -69,15 +95,17 @@ async def get_current_diet():
 
 @app.post("/meal")
 async def add_meal(meal: Meal):
-    global daily_meal_history
-    daily_meal_history.append(meal)
+    meals = load_meals()
+    meals.append(meal)
+    save_meals(meals)
     return {"Message": f"Meal {meal.title} added successfully."}
 
 
 @app.get("/meal")
 async def get_meals() -> MealsSummary:
-    global daily_meal_history
-    if not daily_meal_history:
+    daily_meal_history = load_meals()
+    diet = load_diet()
+    if len(daily_meal_history) == 0:
         raise HTTPException(status_code=404, detail="No meals recorded")
 
     if diet is None:
